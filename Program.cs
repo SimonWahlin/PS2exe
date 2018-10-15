@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 
 namespace PS2exe
 {
@@ -12,8 +11,20 @@ namespace PS2exe
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            var unwantedChars = new Char[] { '\uFEFF', '\u200B' };
+            var scriptString = Encoding.UTF8.GetString(Properties.Resources.Script).Trim(unwantedChars);
+            using (PowerShell ps = PowerShell.Create())
+            {
+                ps
+                    .AddScript(scriptString)
+                    .AddCommand("Out-String");
+
+                var result = ps.Invoke();
+                foreach (var line in result)
+                {
+                    Console.WriteLine(line);
+                }
+            }
         }
     }
 }
