@@ -9,8 +9,6 @@ namespace PS2exe
     {
         static void Main(string[] args)
         {
-            //var unwantedChars = new Char[] { '\uFEFF', '\u200B' };
-            //var scriptString = Encoding.UTF8.GetString(Properties.Resources.Script).Trim(unwantedChars);
             var scriptString = GetString(Properties.Resources.Script, Encoding.UTF8);
             using (PowerShell ps = PowerShell.Create())
             {
