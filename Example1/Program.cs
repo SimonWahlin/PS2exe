@@ -5,6 +5,9 @@ using System.Management.Automation;
 
 namespace PS2exe
 {
+    /// <summary>
+    /// This example shows how to compile a PowerShell script in to an executable that runs it.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -12,9 +15,8 @@ namespace PS2exe
             var scriptString = GetString(Properties.Resources.Script, Encoding.UTF8);
             using (PowerShell ps = PowerShell.Create())
             {
-                ps
-                    .AddScript(scriptString)
-                    .AddCommand("Out-String");
+                ps.AddScript(scriptString);
+                ps.AddCommand("Out-String");
 
                 var result = ps.Invoke();
                 foreach (var line in result)

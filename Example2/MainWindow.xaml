@@ -1,0 +1,26 @@
+﻿<Window x:Class="Example2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Example2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" >
+            <Label Content="Service Name"/>
+            <TextBox x:Name="ServiceName"/>
+            <Button x:Name="GetService" Content="Get-Service" Click="GetService_Click"/>
+        </StackPanel>
+        <DockPanel Grid.Column="1">
+            <Label DockPanel.Dock="Top" Content="Output"/>
+            <ScrollViewer x:Name="Scroll">
+                <TextBlock x:Name="Output" ScrollViewer.VerticalScrollBarVisibility="Auto" Padding="10" FontFamily="Consolas" ScrollViewer.CanContentScroll="True"/>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Window>
